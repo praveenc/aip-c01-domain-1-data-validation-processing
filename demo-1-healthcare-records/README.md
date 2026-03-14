@@ -109,7 +109,7 @@ well-formed request.
 | `lambda_validation/clinical_validator.py` | `lambda_handler`-compatible function for clinical domain validation: ICD-10 codes, vital sign plausibility, drug interactions, date logic |
 | `cloudwatch/quality_dashboard.py` | Generates CloudWatch `put_metric_data` payloads, alarm configurations, and a full dashboard JSON body from upstream validation results |
 | `bedrock_formatting/format_for_bedrock.py` | Simulates Comprehend Medical entity extraction from clinical notes; constructs Bedrock Claude 3 Messages API payloads |
-| `../shared/utils/bedrock_helpers.py` | Shared utility: `build_bedrock_messages_payload()` — produces correctly structured `invoke_model` request dicts |
+| [`shared/utils/bedrock_helpers.py`](../shared/utils/bedrock_helpers.py) | Shared utility: `build_bedrock_messages_payload()` — produces correctly structured `invoke_model` request dicts |
 
 > **Note on local execution:** All scripts run offline with standard-library Python only — no
 > third-party packages and no AWS credentials required. AWS API calls (`boto3`) are represented
@@ -121,7 +121,7 @@ well-formed request.
 Run all steps from inside the `demo-1-healthcare-records/` directory:
 
 ```bash
-cd aip-c01-1.3-demos/demo-1-healthcare-records
+cd demo-1-healthcare-records/
 ```
 
 ### Step 1: Generate Synthetic Healthcare Data
