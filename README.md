@@ -1,4 +1,4 @@
-# AIP-C01 Domain 1: Data Validation & Processing
+# AIP-C01 Domain 1 (Task 1.3): Data Validation & Processing
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
