@@ -61,18 +61,39 @@ This repository contains end-to-end demos that cover the data preparation and va
 ```bash
 # Clone the repo
 git clone https://github.com/praveenc/aip-c01-domain-1-data-validation-processing.git
-cd aip-c01-domain-1-data-validation-processing
-
-# Run the healthcare records demo (all steps)
-cd demo-1-healthcare-records/
-python synth_data/generate_healthcare_data.py
-python glue_quality/glue_dq_rules.py
-python lambda_validation/clinical_validator.py
-python cloudwatch/quality_dashboard.py
-python bedrock_formatting/format_for_bedrock.py
+cd aip-c01-domain-1-data-validation-processing/demo-1-healthcare-records/
 ```
 
-> **No AWS credentials or third-party packages required.** All scripts run offline with Python 3.9+ standard library only. AWS API calls are represented as generated configuration files.
+### Option A: Deploy to AWS (recommended)
+
+Use the infrastructure script to provision all resources (S3, Glue, Lambda, CloudWatch) and run the full pipeline on AWS:
+
+```bash
+# Preview what will be created
+./scripts/setup-aws-infra.sh --dry-run
+
+# Deploy everything
+./scripts/setup-aws-infra.sh
+
+# Tear down when done
+./scripts/setup-aws-infra.sh --cleanup
+```
+
+> Requires: AWS CLI configured with valid credentials, Python 3.9+, `zip`.
+
+### Option B: Run locally (offline, no AWS needed)
+
+Run each step individually using standard-library Python — no AWS credentials or third-party packages required:
+
+```bash
+python synth_data/generate_healthcare_data.py        # Step 1: Generate synthetic data
+python glue_quality/glue_dq_rules.py                 # Step 2: Simulate Glue DQ rules
+python lambda_validation/clinical_validator.py       # Step 3: Lambda domain validation
+python cloudwatch/quality_dashboard.py               # Step 4: Generate CloudWatch configs
+python bedrock_formatting/format_for_bedrock.py      # Step 5: Comprehend + Bedrock formatting
+```
+
+> AWS API calls are represented as generated configuration files in each step's `output/` directory.
 
 ## Requirements
 
